@@ -24,13 +24,9 @@ class UsersController < ApplicationController
     user = User.new(user_params)
 
     if user.save
-      # The following line doesn't work as I'd expect. It results in:
-      #  Response has no matching <turbo-frame id="new_user"> element
-      #redirect_to root_url
-
-      render turbo_stream: turbo_stream.append('new_user', template: "users/_account_created")
+      redirect_to root_url
     else
-      render turbo_stream: turbo_stream.replace('new_user', template: 'users/_form', locals: { user: user})
+      render turbo_stream: turbo_stream.replace("new_user", template: 'users/_form', locals: { user: user})
     end
   end
 

@@ -1,4 +1,4 @@
-<%= turbo_frame_tag dom_id(user) do %>
+<%= tag.div id: dom_id(user) do %>
   <%= form_with(model: user) do |form| %>
     <% if user.errors.any? %>
       <div style="color: red">
