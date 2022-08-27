@@ -104,4 +104,4 @@ if save is unsuccesful, otherwise we redirect to our root page.
 
 From [looking around](https://discuss.hotwired.dev/t/redirect-after-turbo-stream-response/2303/3?u=andystabler) it seems like this is an approach others have taken.
 
-Take a look at the [without-turbo-frame-tag branch](https://github.com/AndyStabler/turbo-redirects/tree/without-turbo-frame-tag) to see how this can be done without using a `turbo-frame-tag`.
+Take a look at the [without-turbo-frame-tag branch](https://github.com/AndyStabler/turbo-redirects/pull/1/files) to see how this can be done without using a `turbo-frame-tag`.
