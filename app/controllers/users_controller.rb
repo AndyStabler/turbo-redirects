@@ -19,18 +19,18 @@ class UsersController < ApplicationController
   def edit
   end
 
-  # POST /users or /users.json
+  # POST /users
   def create
-    @user = User.new(user_params)
+    user = User.new(user_params)
 
-    respond_to do |format|
-      if @user.save
-        format.html { redirect_to user_url(@user), notice: "User was successfully created." }
-        format.json { render :show, status: :created, location: @user }
-      else
-        format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @user.errors, status: :unprocessable_entity }
-      end
+    if user.save
+      # The following line doesn't work as I'd expect. It results in:
+      #  Response has no matching <turbo-frame id="user_form"> element
+      #redirect_to root_url
+
+      render turbo_stream: turbo_stream.append("user_form", template: "users/_account_created")
+    else
+      render turbo_stream: turbo_stream.replace("user_form", template: 'users/_form', locals: { user: user})
     end
   end
 
