@@ -28,30 +28,30 @@ Here's my form, you can see it's wrapped in a `turbo_frame_tag`:
 
 ```rb
   # app/views/users/_form.html.erb
-  <%%= turbo_frame_tag dom_id(user) do %>
-    <%%= form_with(model: user) do |form| %>
-      <%% if user.errors.any? %>
+  <%= turbo_frame_tag dom_id(user) do %>
+    <%= form_with(model: user) do |form| %>
+      <% if user.errors.any? %>
         <div style="color: red">
-          <h2><%%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
+          <h2><%= pluralize(user.errors.count, "error") %> prohibited this user from being saved:</h2>
 
           <ul>
-            <%% user.errors.each do |error| %>
-              <li><%%= error.full_message %></li>
-            <%% end %>
+            <% user.errors.each do |error| %>
+              <li><%= error.full_message %></li>
+            <% end %>
           </ul>
         </div>
-      <%% end %>
+      <% end %>
 
       <div>
-        <%%= form.label :name, style: "display: block" %>
-        <%%= form.text_field :name %>
+        <%= form.label :name, style: "display: block" %>
+        <%= form.text_field :name %>
       </div>
 
       <div>
-        <%%= form.submit %>
+        <%= form.submit %>
       </div>
-    <%% end %>
-  <%% end %>
+    <% end %>
+  <% end %>
 ```
 
 And here's my controller:
@@ -79,7 +79,7 @@ If the save is successful, then we append the `users/_account_created` template 
 The `_account_created` partial sets a redirect url value that a stimulus controller detects and redirects the browser to. Here's what `users/_account_created` looks like:
 
 ```rb
-<div data-controller="redirect" data-redirect-url-value="<%%= root_url %>"></div>
+<div data-controller="redirect" data-redirect-url-value="<%= root_url %>"></div>
 ```
 
 Our stimulus controller looks like this:
